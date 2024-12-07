@@ -1,13 +1,39 @@
 // Define the HTML content that you want to inject into the existing <ul>
 const newMenuItems = `<a id="buttonCoolness" class="rbx-menu-item account-switch-menu-more-item" href="#">Switch Accounts++</a>`;
 const insertDIV = `
-    <div id="robloxCustomContent" style="position: fixed; top: 20px; left: 20px; z-index: 9999; background-color: rgba(255, 255, 255, 0.8); border: 1px solid #ccc; padding: 10px;">
-        <h2>Injected HTML</h2>
-        <p>This content was injected into the page because you're on Roblox.</p>
-        <button id="customButton___">Click me!</button>
-        <div id="messageContainer" style="margin-top: 10px; font-size: 16px; color: green;"></div>
+<div role="dialog">
+  <div class="fade modal-backdrop in"></div>
+  <div role="dialog" tabindex="-1" class="fade account-switcher-modal in modal" style="display: block;">
+    <div class="modal-sm modal-dialog">
+      <div class="modal-content" role="document">
+        <div class="account-switcher-header modal-header">
+          <button id="closeMeBro" type="button" class="close" title="close">
+            <span class="icon-close"></span>
+          </button>
+          <h4 class="modal-title">Switch Accounts</h4>
+        </div>
+        <div class="modal-body">
+          <div class="section-content modal-section">
+            <ul class="account-switcher-list ">
+              
+              <li class="account-selection-list-item">
+                <div class="account-selection" role="button" tabindex="0">
+                  <div class="account-switcher-icon-add">
+                    <span class="icon-plus"></span>
+                  </div>
+                  <div class="account-selection-name-container">
+                    <p id="addButtonBro" class="account-selection-add-account">Add Account</p>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
-`;
+  </div>
+</div>
+`
 let liSettings
 
 function delay(ms) {
@@ -28,12 +54,15 @@ async function init() {
                 newDiv = document.createElement('div');
                 newDiv.innerHTML = insertDIV;
                 document.body.appendChild(newDiv); 
-                const customButton = document.getElementById("customButton___");
+                const customButton = document.getElementById("closeMeBro");
                 customButton.addEventListener('click', function(event) {
-                    const messageContainer = document.getElementById("messageContainer");
-                    messageContainer.innerHTML = "Button Clicked!";
                     event.preventDefault();
                     document.body.removeChild(newDiv);
+                });
+                const addButton = document.getElementById("addButtonBro");
+                addButton.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    window.location.href = "https://www.roblox.com/login"
                 });
             });
         }, 10);
