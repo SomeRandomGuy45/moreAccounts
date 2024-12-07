@@ -15,7 +15,7 @@ function init() {
     const button = document.getElementById('customButton');
     button.addEventListener('click', function() {
         chrome.runtime.sendMessage({ action: 'buttonClicked', message: 'Button clicked on Roblox page' }, function(response) {
-        console.log('Background response:', response.status);
+            console.log('Background response:', response.status);
         });
     });
 }
